@@ -1,0 +1,47 @@
+scenarios:
+  #* scenario 1: Dit is het begin waar het verhaal wordt vertelt
+  scenario_1:
+    #! pas nog aan!!!!
+    text: "Verhaal Je bent een vluchteling uit Afghanistan. bla bla bla... etc etc. hoe wil je vluchten?"
+    Answer posibilities: 
+      zelf: stuk-2
+      smokkelaar: stuk-3
+    get:
+      zelf: passpoort
+
+  stuk-2: # je gaat de keuze maken of je in de regio wilt of erbuiten
+    text: 'Ik weet niet of ik in de regio moet blijven of dat ik naar bijvoorbeeld Europa wil?'
+    Answer posibilities:
+      in de regio: stuk-4
+      buiten de regio: stuk-5
+    needed:
+      buiten de regio:
+        - passpoort
+        - je hebt hiervoor een passpoort nodig
+    get:
+      buiten de regio: passpoort
+
+  stuk-3: # stuk 3 waar je met een smokkelaar gaat
+    text: 'Wellicht is het een optie om gesmokkeld te gaan.'
+
+  stuk-4: # stuk 4 waar je zelf naar Pakistan gaat
+    text: 'Ik denk dat ik naar een land hier in de regio ga: Pakistan!'
+
+  stuk-5: # stuk 5 waar je naar Europa gaat
+    text: 'Ik ga naar Europa, alleen weet ik nog niet hoe?'
+    Answer posibilities:
+      nl actief evacuatieplan: stuk-6
+      via turkije: stuk-7
+
+  stuk-6: # stuk 6 waar je via het NL actief evacuatieplan wordt opgehaald (of toch niet?)
+    text: |-
+      Ik kan ook direct naar Nederland door het NL actief evacuatieplan!
+      Helaas kom ik hier niet voor in aanmerking
+    Answer posibilities: 
+      alsnog met smokkelaars: stuk-3
+      via turkije: stuk-7
+
+  stuk-7: # stuk 7 waar je via Turkije in Europa probeert te komen
+    text: 'Ik ga via Turkije in Europa proberen te komen!'
+
+pockets: []
