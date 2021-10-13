@@ -1,4 +1,4 @@
-import time, yaml
+import time, yaml, os
 from yaml.loader import FullLoader
 
 # load file with scenarios
@@ -8,12 +8,13 @@ scenarios = loadYaml['scenarios']
 pockets = loadYaml['pockets']
 
 class game():
-    def __init__(self, dev, direct=True):
+    def __init__(self, dev, direct=True, clear_screen=False):
         # houd bij in welke scenario de game zit
         self.current_scenario = 'scenario_1'
         # kijk of developer mode aan staat
         self.developer = dev
         self.directType = direct
+        self.clear_screen= clear_screen
         # probeer de save file te openen als die er is
         try:
             saveFile = open('saveFile.txt', 'r')
@@ -27,29 +28,31 @@ class game():
             
     #* setup scenario function
     def setup_scenario(self):
+        if self.clear_screen:
+            os.system('cls')
         if self.directType:
             print(scenarios[self.current_scenario]['text'])
         else:
             for i in scenarios[self.current_scenario]['text']:
                 print(i, end='', flush=True)
-                time.sleep(0.01)
+                time.sleep(0.015)
             time.sleep(0.1)
             print('')
 
         if 'Answer posibilities' in scenarios[self.current_scenario]:
-            print(">", end='\t')
             curAnsNumb = 1
             for i in scenarios[self.current_scenario]['Answer posibilities']:
+                print(">", end='\t')
                 if i != '':
-                    print(f'{curAnsNumb}. {i}', end="\t")
+                    print(f'{curAnsNumb}. {i}', flush=True)
                 else:
-                    print(f'{curAnsNumb}. Enter om verder te gaan', end='\t')
+                    print(f'{curAnsNumb}. Enter om verder te gaan', flush=True)
                 curAnsNumb = curAnsNumb + 1
             else:
                 pass
 
         # check de waarde van de input
-        player_answer = input('\n> ')
+        player_answer = input('> ')
         # save wanneer waarde gelijk is aan 'save()'
         #! temporarly removed save feature
         if player_answer.lower() == 'save()':
@@ -145,6 +148,6 @@ class game():
 # toepassing die deze opdracht eigen is:
 
 
-thegame = game(True, False)
+thegame = game(True, False, True)
 
 thegame.setup_scenario()
