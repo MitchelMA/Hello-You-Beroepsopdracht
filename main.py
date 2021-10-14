@@ -91,8 +91,8 @@ class game():
             answer = answerWhenNum
         except:
             pass
-        # kijk of het gegeven antwoord een mogelijkheid is
-        if answer.lower() in scenarios[self.current_scenario]['Answer posibilities'].keys():
+        # kijk of het gegeven antwoord een mogelijkheid is, gebruik comprehension to get lowercase
+        if answer.lower() in list(i.lower() for i in scenarios[self.current_scenario]['Answer posibilities']):
             allowed = True
             # kijk of er een specifiek item in je pockets moet zitten om verder te kunnen
             if 'needed' in scenarios[self.current_scenario].keys():
@@ -121,7 +121,8 @@ class game():
             
             # waneer je door mag gaan, zet de 'self.current_scenario' naar de volgende scenario
             if allowed:
-                self.current_scenario = scenarios[self.current_scenario]['Answer posibilities'][answer.lower()]
+                # get lowercase index so uppercase can be used
+                self.current_scenario = scenarios[self.current_scenario]['Answer posibilities'][list(i for i in scenarios[self.current_scenario]['Answer posibilities'])[list(i.lower() for i in scenarios[self.current_scenario]['Answer posibilities']).index(answer.lower())]]
         
         # wanneer het gegeven antwoord geen mogelijkheid is, geef dit dan aan
         else:
