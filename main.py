@@ -100,7 +100,6 @@ class game():
             print(ans)
             if 'needed' in scenarios[self.current_scenario].keys(): 
                 if type(scenarios[self.current_scenario]['needed']) != NoneType and ans in scenarios[self.current_scenario]['needed']:
-
                     # als je dit item niet in je pockets hebt, kan je niet verder
                     if scenarios[self.current_scenario]['needed'][ans][0] not in pockets:
                         allowed = False
