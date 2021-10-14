@@ -93,11 +93,17 @@ class game():
         except:
             pass
         # kijk of het gegeven antwoord een mogelijkheid is, gebruik comprehension to get lowercase
-        ans = list(i for i in scenarios[self.current_scenario]['Answer posibilities'])[list(i.lower() for i in scenarios[self.current_scenario]['Answer posibilities']).index(answer.lower())]
+        try:
+            ans = list(i for i in scenarios[self.current_scenario]['Answer posibilities'])[list(i.lower() for i in scenarios[self.current_scenario]['Answer posibilities']).index(answer.lower())]
+        except:
+            print('dit is geen optie')
+            time.sleep(1)
+            self.setup_scenario()
+
         if ans in scenarios[self.current_scenario]['Answer posibilities']:
             allowed = True
             # kijk of er een specifiek item in je pockets moet zitten om verder te kunnen
-            print(ans)
+            # print(ans)
             if 'needed' in scenarios[self.current_scenario].keys(): 
                 if type(scenarios[self.current_scenario]['needed']) != NoneType and ans in scenarios[self.current_scenario]['needed']:
                     # als je dit item niet in je pockets hebt, kan je niet verder
@@ -153,5 +159,4 @@ if __name__ == '__main__':
     scenarios = loadYaml['scenarios']
     pockets = loadYaml['pockets']
 
-
-    thegame = game(True, False, True)
+    thegame = game(direct=False, clear_screen=True)
