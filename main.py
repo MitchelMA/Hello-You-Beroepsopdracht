@@ -1,9 +1,10 @@
 import time, yaml, os
+from types import NoneType
 from yaml.loader import FullLoader
 
 
 class game():
-    def __init__(self, dev, direct=True, clear_screen=False):
+    def __init__(self, dev=False, direct=True, clear_screen=False):
         # houd bij in welke scenario de game zit
         self.current_scenario = 'scenario_1'
         # kijk of developer mode aan staat
@@ -92,37 +93,38 @@ class game():
         except:
             pass
         # kijk of het gegeven antwoord een mogelijkheid is, gebruik comprehension to get lowercase
-        if answer.lower() in list(i.lower() for i in scenarios[self.current_scenario]['Answer posibilities']):
+        ans = list(i for i in scenarios[self.current_scenario]['Answer posibilities'])[list(i.lower() for i in scenarios[self.current_scenario]['Answer posibilities']).index(answer.lower())]
+        if ans in scenarios[self.current_scenario]['Answer posibilities']:
             allowed = True
             # kijk of er een specifiek item in je pockets moet zitten om verder te kunnen
-            if 'needed' in scenarios[self.current_scenario].keys():
-                if answer.lower() in scenarios[self.current_scenario]['needed'].keys():
+            print(ans)
+            if 'needed' in scenarios[self.current_scenario].keys(): 
+                if type(scenarios[self.current_scenario]['needed']) != NoneType and ans in scenarios[self.current_scenario]['needed']:
 
                     # als je dit item niet in je pockets hebt, kan je niet verder
-                    if scenarios[self.current_scenario]['needed'][answer.lower()][0] not in pockets:
+                    if scenarios[self.current_scenario]['needed'][ans][0] not in pockets:
                         allowed = False
 
                     # als je dit item wel hebt
                     if allowed:
                         # als je dit item hebt, haal het dan uit je pockets
-                        item_index = pockets.index(scenarios[self.current_scenario]['needed'][answer.lower()][0])
+                        item_index = pockets.index(scenarios[self.current_scenario]['needed'][ans][0])
                         del pockets[item_index]
 
                     # in het geval je niet door mag, print uit waarom
                     else:
-                        print(scenarios[self.current_scenario]['needed'][answer.lower()][1])
+                        print(scenarios[self.current_scenario]['needed'][ans][1])
             
             # kijk of er een specifiek item is dat je krijgt als je deze optie kiest
-            if 'get' in scenarios[self.current_scenario].keys():
-                if answer.lower() in scenarios[self.current_scenario]['get'].keys():
+            if 'get' in scenarios[self.current_scenario].keys() and type(scenarios[self.current_scenario]['get']) != NoneType and ans in scenarios[self.current_scenario]['get']:
                     # voeg het item dat je hoort te krijgen toe aan je pockets en verwijder de de 'get' content van het gegeven antwoord
-                    pockets.append(scenarios[self.current_scenario]['get'][answer.lower()])
-                    del scenarios[self.current_scenario]['get'][answer.lower()]
+                    pockets.append(scenarios[self.current_scenario]['get'][ans])
+                    del scenarios[self.current_scenario]['get'][ans]
             
             # waneer je door mag gaan, zet de 'self.current_scenario' naar de volgende scenario
             if allowed:
                 # get lowercase index so uppercase can be used
-                self.current_scenario = scenarios[self.current_scenario]['Answer posibilities'][list(i for i in scenarios[self.current_scenario]['Answer posibilities'])[list(i.lower() for i in scenarios[self.current_scenario]['Answer posibilities']).index(answer.lower())]]
+                self.current_scenario = scenarios[self.current_scenario]['Answer posibilities'][ans]
         
         # wanneer het gegeven antwoord geen mogelijkheid is, geef dit dan aan
         else:

@@ -7,7 +7,7 @@ scenarios:
       Zelf: stuk-2
       Smokkelaar: stuk-3
     get:
-      zelf: passpoort
+      Zelf: passpoort
 
   stuk-2: # je gaat de keuze maken of je in de regio wilt of erbuiten
     text: 'Ik weet niet of ik in de regio moet blijven of dat ik naar bijvoorbeeld Europa wil?'
