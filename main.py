@@ -1,11 +1,6 @@
 import time, yaml, os
 from yaml.loader import FullLoader
 
-# load file with scenarios
-loadYaml = open('scenarios.yaml', 'r')
-loadYaml = yaml.load(loadYaml, Loader=FullLoader)
-scenarios = loadYaml['scenarios']
-pockets = loadYaml['pockets']
 
 class game():
     def __init__(self, dev, direct=True, clear_screen=False):
@@ -25,6 +20,8 @@ class game():
         except:
             self.current_scenario = 'scenario_1'
             pass
+        if '__setup_scenario__':
+            self.setup_scenario()
             
     #* setup scenario function
     def setup_scenario(self):
@@ -147,7 +144,12 @@ class game():
 
 # toepassing die deze opdracht eigen is:
 
+if __name__ == '__main__':
+    # load file with scenarios
+    loadYaml = open('scenarios.yaml', 'r')
+    loadYaml = yaml.load(loadYaml, Loader=FullLoader)
+    scenarios = loadYaml['scenarios']
+    pockets = loadYaml['pockets']
 
-thegame = game(True, False, True)
 
-thegame.setup_scenario()
+    thegame = game(True, False, True)
