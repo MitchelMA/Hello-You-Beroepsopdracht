@@ -25,7 +25,7 @@ scenarios:
     text: 'Wellicht is het een optie om gesmokkeld te gaan.'
 
   stuk-4: # stuk 4 waar je zelf naar Pakistan gaat
-    text: 'Ik denk dat ik naar een land hier in de regio ga: Pakistan!'
+    text: 'Ik denk dat ik naar een land hier in de regio ga: *[Pakistan]*!'
 
   stuk-5: # stuk 5 waar je naar Europa gaat
     text: 'Ik ga naar Europa, alleen weet ik nog niet hoe?'
@@ -35,7 +35,7 @@ scenarios:
 
   stuk-6: # stuk 6 waar je via het NL actief evacuatieplan wordt opgehaald (of toch niet?)
     text: |-
-      Ik kan ook direct naar Nederland door het NL actief evacuatieplan!
+      Ik kan ook direct naar Nederland door het *[NL actief evacuatieplan]*!
       Helaas kom ik hier niet voor in aanmerking
     Answer posibilities: 
       Alsnog met smokkelaars: stuk-3

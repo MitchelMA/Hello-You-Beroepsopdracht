@@ -1,4 +1,4 @@
-import time, yaml, os
+import time, yaml, os, ctypes
 from types import NoneType
 from yaml.loader import FullLoader
 
@@ -29,9 +29,9 @@ class game():
         if self.clear_screen:
             os.system('cls')
         if self.directType:
-            print(scenarios[self.current_scenario]['text'])
+            print(scenarios[self.current_scenario]['text'].replace("_[", "\033[3m").replace("]_", "\033[0m").replace("*[", "\033[1m").replace("]*", "\033[0m"))
         else:
-            for i in scenarios[self.current_scenario]['text']:
+            for i in scenarios[self.current_scenario]['text'].replace("_[", "\033[3m").replace("]_", "\033[0m").replace("*[", "\033[1m").replace("]*", "\033[0m"):
                 print(i, end='', flush=True)
                 time.sleep(0.015)
             time.sleep(0.1)
@@ -158,5 +158,6 @@ if __name__ == '__main__':
     loadYaml = yaml.load(loadYaml, Loader=FullLoader)
     scenarios = loadYaml['scenarios']
     pockets = loadYaml['pockets']
+    ctypes.windll.kernel32.SetConsoleTitleW("Vluchteling")
 
     thegame = game(direct=False, clear_screen=True)
