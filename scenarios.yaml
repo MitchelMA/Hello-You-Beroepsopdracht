@@ -3,33 +3,36 @@ scenarios:
   scenario_1:
     #! pas nog aan!!!!
     text: "Verhaal Je bent een vluchteling uit Afghanistan. bla bla bla... etc etc. hoe wil je vluchten?"
-    Answer posibilities: 
+    Answer possibilities:
       Zelf: stuk-2
       Smokkelaar: stuk-3
     get:
-      Zelf: passpoort
+      Zelf: paspoort
 
   stuk-2: # je gaat de keuze maken of je in de regio wilt of erbuiten
     text: 'Ik weet niet of ik in de regio moet blijven of dat ik naar bijvoorbeeld Europa wil?'
-    Answer posibilities:
+    Answer possibilities:
       In de regio: stuk-4
       Buiten de regio: stuk-5
     needed:
       Buiten de regio:
-        - passpoort
-        - je hebt hiervoor een passpoort nodig
+        - paspoort
+        - je hebt hiervoor een paspoort nodig
     get:
-      Buiten de regio: passpoort
+      Buiten de regio: paspoort
 
   stuk-3: # stuk 3 waar je met een smokkelaar gaat
     text: 'Wellicht is het een optie om gesmokkeld te gaan.'
+    Answer possibilities:
+      Richting Syrië en dan met de boot naar Italië: stuk-8
+      Richting Turkije en dan over land naar Griekenland: stuk-9
 
   stuk-4: # stuk 4 waar je zelf naar Pakistan gaat
     text: 'Ik denk dat ik naar een land hier in de regio ga: *[Pakistan]*!'
 
   stuk-5: # stuk 5 waar je naar Europa gaat
     text: 'Ik ga naar Europa, alleen weet ik nog niet hoe?'
-    Answer posibilities:
+    Answer possibilities:
       NL actief evacuatieplan: stuk-6
       Via Turkije: stuk-7
 
@@ -37,11 +40,44 @@ scenarios:
     text: |-
       Ik kan ook direct naar Nederland door het *[NL actief evacuatieplan]*!
       Helaas kom ik hier niet voor in aanmerking
-    Answer posibilities: 
+    Answer possibilities:
       Alsnog met smokkelaars: stuk-3
       Via Turkije: stuk-7
 
   stuk-7: # stuk 7 waar je via Turkije in Europa probeert te komen
     text: 'Ik ga via Turkije in Europa proberen te komen!'
+
+  stuk-8:
+    text: |-
+      Op wonderbaarlijke wijze is het me gelukt om door Iran heen in Syrië terecht te komen.
+      Nu kan ik met de boot naar Italië toe.
+      *Voor de kust kapseist de boot, gelukkig word je gered door de kustwacht*.
+      In Italië kom je in een _[Asiel-kamp]_ terecht.
+
+    Answer possibilities:
+      Verder Europa in: ''
+      In Italië blijven en papieren proberen te krijgen: ''
+    needed:
+      Verder Europa in:
+        - 'paspoort'
+        - 'Hiervoor heb je een paspoort nodig!'
+  
+  stuk-9:
+    text: |-
+      Het was een zware tocht, maar het is me uiteindelijk gelukt: ik bent bij de grens van Turkije.
+    Answer possibilities:
+      Turkije in proberen te komen: stuk-11_(einde-1)
+      In een kamp voor Turkije blijven: stuk-10
+    needed:
+      Turkije in proberen te komen:
+        - 'paspoort'
+        - 'Hiervoor heb je een paspoort nodig!'
+
+  stuk-11_(einde-1):
+    text: |-
+      Het is je ─ op wonderbaarlijke wijze ─ gelukt om Turkije binnen te komen.
+      Je bent via Turkije Griekenland binnen gekomen en zo verder Europa in.
+      Je komt in Nederland terecht.
+
 
 pockets: []
