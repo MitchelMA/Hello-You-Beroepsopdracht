@@ -3,12 +3,12 @@ import os
 import time
 import yaml
 from types import NoneType
-
 from yaml.loader import FullLoader
 
 
 class Game:
     def __init__(self, dev=False, direct=True, clear_screen=False):
+        """Initialiseert de Class en zoekt ook naar een save file"""
         # houd bij in welke scenario de game zit
         self.current_scenario = 'scenario_1'
         # kijk of developer mode aan staat
@@ -30,14 +30,14 @@ class Game:
 
     # * setup scenario function
     def setup_scenario(self):
+        """Set de tekst up en kijkt vervolgens naar de input van de speler.\n
+        Wanneer er een input is gegeven, wordt de definition scenario_progression gecalld"""
         if self.clear_screen:
             os.system('cls')
         if self.directType:
-            print(
-                scenarios[self.current_scenario]['text'].replace("_[", "\033[3m").replace("]_", "\033[0m").replace("*[", "\033[1m").replace("]*", "\033[0m"))
+            print(scenarios[self.current_scenario]['text'].replace("_[", "\033[3m").replace("]_", "\033[0m").replace("*[", "\033[1m").replace("]*", "\033[0m"))
         else:
-            for i in scenarios[self.current_scenario]['text'].replace("_[", "\033[3m").replace("]_", "\033[0m").replace(
-                    "*[", "\033[1m").replace("]*", "\033[0m"):
+            for i in scenarios[self.current_scenario]['text'].replace("_[", "\033[3m").replace("]_", "\033[0m").replace("*[", "\033[1m").replace("]*", "\033[0m"):
                 print(i, end='', flush=True)
                 time.sleep(0.015)
             time.sleep(0.1)
@@ -88,8 +88,12 @@ class Game:
             self.scenario_progression(player_answer)
 
     # * scenario progression function
-    def scenario_progression(self, answer):
+    def scenario_progression(self, answer: str):
+        """Waarde handeling definition.\n
+        Checkt of de waarde overeenkomt met één van de gegeven antwoorden.\n
+        Wanneer dit het geval is, wordt self.current_scenario geüpdate naar de waarde van het gegeven antwoord in de scenarios.yaml file"""
         # check of waarde een nummer kan zijn
+        global ans
         answer_when_num = None
         try:
             answer_num = int(answer)
@@ -121,7 +125,7 @@ class Game:
                     if allowed:
                         # als je dit item hebt, haal het dan uit je pockets
                         item_index = pockets.index(scenarios[self.current_scenario]['needed'][ans][0])
-                        del pockets[item_index]
+                        # del pockets[item_index]
 
                     # in het geval je niet door mag, print uit waarom
                     else:
@@ -129,9 +133,10 @@ class Game:
 
             # kijk of er een specifiek item is dat je krijgt als je deze optie kiest
             if 'get' in scenarios[self.current_scenario].keys() and type(scenarios[self.current_scenario]['get']) != NoneType and ans in scenarios[self.current_scenario]['get']:
-                # voeg het item dat je hoort te krijgen toe aan je pockets en verwijder de de 'get' content van het gegeven antwoord
-                pockets.append(scenarios[self.current_scenario]['get'][ans])
-                del scenarios[self.current_scenario]['get'][ans]
+                # voeg het item dat je hoort te krijgen toe aan je pockets en verwijder de de 'get' content van het gegeven antwoord, zorg voor geen dubbele
+                if scenarios[self.current_scenario]['get'][ans] not in pockets:
+                    pockets.append(scenarios[self.current_scenario]['get'][ans])
+                    del scenarios[self.current_scenario]['get'][ans]
 
             # wanneer je door mag gaan, zet de 'self.current_scenario' naar de volgende scenario
             if allowed:
@@ -148,6 +153,8 @@ class Game:
     # * save function
     # ! NEEDS UPDATING
     def save(self):
+        """Functie voor opslaan.\n
+        WORDT MOMENTEEL NIET GEBRUIKT!!"""
         save_file = open('saveFile.txt', 'w')
         save_file.write(self.current_scenario)
         save_file.close()
