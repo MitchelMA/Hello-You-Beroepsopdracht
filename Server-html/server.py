@@ -131,7 +131,7 @@ class Server:
 
         # replacing the content
         response = response.replace('{Stuk_Title}', self.voortgang[addr[0]][0])
-        response = response.replace('{Stuk_Text}', self.scenarios[self.voortgang[addr[0]][0]]['text'].replace("_[", "`<i>").replace("]_", "</i>").replace("*[", "<b>").replace("]*", "</b>"))
+        response = response.replace('{Stuk_Text}', self.scenarios[self.voortgang[addr[0]][0]]['text'].replace("_[", "<i>").replace("]_", "</i>").replace("*[", "<b>").replace("]*", "</b>"))
         option_txt = ''
         option_amount = 0
         if self.scenarios[self.voortgang[addr[0]][0]].get('Answer possibilities'):
