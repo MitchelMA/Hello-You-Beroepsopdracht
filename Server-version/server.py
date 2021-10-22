@@ -159,4 +159,5 @@ if __name__ == '__main__':
     IPV4 = socket.gethostbyname(socket.gethostname())
     PORT = port_input
     s = Server(IPV4, int(port_input))
+    print(s)
     s.start()
