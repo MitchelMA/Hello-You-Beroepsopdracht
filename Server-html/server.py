@@ -109,7 +109,6 @@ class Server:
                 if allowed:
                     self.voortgang[addr[0]][0] = self.scenarios[self.voortgang[addr[0]][0]].get('Answer possibilities')[answer]
 
-                time.sleep(0.4)
                 if toSend:
                     scenario_setup(conn, addr)
             except:
