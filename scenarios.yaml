@@ -71,6 +71,10 @@ scenarios:
         - 'paspoort'
         - 'Hiervoor heb je een paspoort nodig!'
 
+  stuk-10:
+    text: 'je zit in een kamp voor Turkije'
+    Answer possibilities:
+
   stuk-11_(einde-1):
     text: |-
       Het is je ─ op wonderbaarlijke wijze ─ gelukt om Turkije binnen te komen.

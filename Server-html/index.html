@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beroeps Opdracht P1.1</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        background: #333;
+        color: whitesmoke;
+      }
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      .content {
+        margin: 0 auto;
+        width: 100%;
+        max-width: 950px;
+        padding: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="content">
+      <h1>{Stuk_Title}</h1>
+      <p>{Stuk_Text}</p>
+      <ol>
+        {Stuk_Options}
+      </ol>
+      <p>{Custom_Message}</p>
+      <form action="/" autocomplete="off">
+        <label for="opt">Jouw Keuze</label><br />
+        <input
+          type="text"
+          id="opt"
+          name="option"
+          value=""
+          autocomplete="off"
+          autofocus
+          list="game_list"
+          required
+        />
+        <datalist id="game_list">
+          {List_Items}
+        </datalist>
+      </form>
+    </div>
+  </body>
+</html>
