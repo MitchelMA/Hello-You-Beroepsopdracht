@@ -26,7 +26,12 @@ scenarios:
       Richting Turkije en dan over land naar Griekenland: stuk-9
 
   stuk-4: # stuk 4 waar je zelf naar Pakistan gaat
-    text: 'Ik denk dat ik naar een land hier in de regio ga: *[Pakistan]*!'
+    text: |-
+      Ik denk dat ik naar een land hier in de regio ga.
+      Nu heb ik twee keuzes: *[Pakistand]*, of *[India]*.
+    Answer possibilities:
+      Pakistand: stuk-20_(einde-7)
+      India: stuk-21_(einde-8)
 
   stuk-5: # stuk 5 waar je naar Europa gaat
     text: 'Ik ga naar Europa, alleen weet ik nog niet hoe?'
@@ -44,6 +49,9 @@ scenarios:
 
   stuk-7: # stuk 7 waar je via Turkije in Europa probeert te komen
     text: 'Ik ga via Turkije in Europa proberen te komen!'
+    Answer possibilities:
+      Langs Griekenland: stuk-16_(einde-6)
+      Over de Zwarte Zee via Wit-Rusland Polen inkomen: stuk-17
 
   stuk-8:
     text: |-
@@ -65,14 +73,16 @@ scenarios:
       Het was een zware tocht, maar het is me uiteindelijk gelukt: ik bent bij de grens van Turkije.
     Answer possibilities:
       Turkije in proberen te komen: stuk-11_(einde-1)
-      In een kamp voor Turkije blijven: stuk-10
+      In een kamp voor Turkije blijven: stuk-10_(einde-3)
     needed:
       Turkije in proberen te komen:
         - 'paspoort'
         - 'Hiervoor heb je een paspoort nodig!'
 
-  stuk-10:
-    text: 'je zit in een kamp voor Turkije'
+  stuk-10_(einde-3):
+    text: |-
+      je zit in een kamp voor Turkije.
+      Drie jaar later ga je terug naar Afghanistan omdat het daar weer rustig is geworden.
     Answer possibilities:
 
   stuk-11_(einde-1):
@@ -83,10 +93,13 @@ scenarios:
 
 
   stuk-12:
-    text: 'Ik ga verder Europa in'
+    text: 'Ik ga verder Europa in.'
+    Answer possibilities:
+      Naar Nederland: stuk-19_(einde-5)
+      Naar Duitsland: stuk-18_(einde-4)
 
   stuk-13:
-    text: 'Oké, ik ga kijken of ik ergens papieren aan kan vragen'
+    text: 'Oké, ik ga kijken of ik ergens papieren aan kan vragen.'
     Answer possibilities:
       Illegale aanvragen: stuk-14
       Officiële aanvragen: stuk-15_(einde-2)
@@ -95,11 +108,46 @@ scenarios:
     text: |-
       Wellicht is het het beste als de Italiaanse overheid niet weet dat ik een illegale emmigrant ben.
       Ik zal dus kijken of ik ergens illigale papieren kan krijgen.
+    Answer possibilities:
+      Nederland in gaan: stuk-19_(einde-5)
+      Duitsland in gaan: stuk-18_(einde-4)
 
   stuk-15_(einde-2):
     text: |-
       Je kijkt of je papieren kan aanvragen bij een gemeentehuis in de buurt.
       Alleen vindt het bestuur het niet acceptabel dat een illegale zo het land binnen is gekomen.
       Je wordt opgesloten in een gevangenis onder dermate slechte omstandigheden dat je in je cel komt te overlijden.
+
+  stuk-16_(einde-6):
+    text: |-
+      Het is me gelukt om via Griekenland in Oostenrijk terecht te komen door een herverdeling van immigranten.
+
+  stuk-17:
+    text: |-
+      Het lukte mij om via Wit-Rusland in Polen te komen.
+      Nu ga ik kijken of ik of Nederland in kan komen, of Duitsland.
+    Answer possibilities:
+      Naar Nederland: stuk-19_(einde-5)
+      Naar Duitsland: stuk-18_(einde-4)
+
+  stuk-18_(einde-4):
+    text: |-
+      Toekomstbeeld van Duitsland:
+      Het is mij gelukt om in Duitsland te komen.
+
+  stuk-19_(einde-5):
+    text: |-
+      Toekomstbeeld van Nederland:
+      Het is mij gelukt om in Nederland te komen.
+
+  stuk-20_(einde-7):
+    text: |-
+      Toekomstbeeld van Pakistand:
+      Het is mij gelukt om in Pakistan te komen.
+
+  stuk-21_(einde-8):
+    text: |-
+      Toekomstbeeld van India:
+      Het is mij gelukt om in India te komen.
 
 pockets: []
