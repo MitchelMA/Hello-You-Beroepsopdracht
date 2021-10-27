@@ -1,3 +1,5 @@
+<h1 style="color:rgb(255,77,77);">Deze opdracht is af!</h1>
+
 # Beroepsopdracht: Hello You!
 
 Dit is de eerste beroepsopdracht die ik op het Mediacollege Amsterdam  
