@@ -9,4 +9,6 @@ te laten beleven. Door verschillende keuzes in het verhaal te
 maken, zullen er verschillende verhaallijnen komen die ook tot een  
 ander einde zullen leiden.
 
-!Dit is mijn eerste push, nu staat er alleen nog dit [_README.md_](./README.md) bestand op!
+Het bestand waar de opdracht om ging is: [main.py](./main.py).  
+Voor een server version waar een andere client verbind: [/Server-version](./Server-version).  
+Voor een server version waar je met een browser verbind: [/Server-html](./Server-html).
