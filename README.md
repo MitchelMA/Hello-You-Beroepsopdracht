@@ -11,4 +11,8 @@ ander einde zullen leiden.
 
 Het bestand waar de opdracht om ging is: [main.py](./main.py).  
 Voor een server version waar een andere client verbind: [/Server-version](./Server-version).  
-Voor een server version waar je met een browser verbind: [/Server-html](./Server-html).
+Voor een server version waar je met een browser verbind: [/Server-html](./Server-html).  
+  
+Mijn [verhaal](./Verhaal.md)  
+Mijn [flowchart](./flowchart.png):  
+![flowchart](./flowchart.png)
