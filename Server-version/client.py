@@ -29,7 +29,6 @@ def receiver():
             if msg.get('Answer possibilities'):
                 for idx, i in enumerate(msg.get('Answer possibilities').keys()):
                     print(f' >\t{idx+1}. ', i, flush=True, sep='')
-                # print(f' >\tb{i.decode(FORMAT)}')
         except:
             print(msg, flush=True)
             pass

@@ -70,7 +70,6 @@ class Server:
 
         # game components
         def scenario_setup(conn, addr, msg=''):
-            # conn.send(str(self.scenarios[self.voortgang.get(addr[0])[0]]).encode(self.FORMAT))
             self.send(conn, addr, cus=msg)
 
         def scenario_progression(conn, addr, answer, toSend):
@@ -96,11 +95,6 @@ class Server:
                             self.send(conn, addr, cus=f'{self.scenarios[self.voortgang[addr[0]][0]].get("needed").get(answer)[1]}')
                             return
 
-                        if allowed:
-                            # item_index = self.voortgang[addr[0]][1].index(self.scenarios[self.voortgang[addr[0]][0]]['needed'][answer][0])
-                            # del self.voortgang[addr][1][item_index]
-                            pass
-
                 if 'get' in self.scenarios[self.voortgang[addr[0]][0]].keys() and type(self.scenarios[self.voortgang[addr[0]][0]]['get']) != NoneType and answer in \
                         self.scenarios[self.voortgang[addr[0]][0]]['get']:
                     # since it can't be deleted (if I do, it wil be deleted for everyone playing the game), I have to check for duplicates
@@ -115,7 +109,6 @@ class Server:
                 print('er gaat iets fout')
                 self.send(conn, addr, cus='Oeps, er ging iets mis!')
 
-        # scenario_setup(conn, addr)
         global request_option
         request_option = None
         if request_data[0:2] == '/?':

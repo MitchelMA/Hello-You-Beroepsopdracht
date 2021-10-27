@@ -97,12 +97,11 @@ class Game:
         answer_when_num = None
         try:
             answer_num = int(answer)
-            # print(answer, '\b:', list(scenarios[self.current_scenario]['Answer possibilities'].keys())[answer_num - 1])
             answer_when_num = list(scenarios[self.current_scenario]['Answer possibilities'].keys())[answer_num - 1]
             answer = answer_when_num
         except:
             pass
-        # kijk of het gegeven antwoord een mogelijkheid is, gebruik comprehension to get lowercase
+        # kijk of het gegeven antwoord een mogelijkheid is, gebruik comprehension om lowercase te kunnen gebruiken
         try:
             ans = list(i for i in scenarios[self.current_scenario]['Answer possibilities'])[list(i.lower() for i in scenarios[self.current_scenario]['Answer possibilities']).index(answer.lower())]
         except:
@@ -113,7 +112,6 @@ class Game:
         if ans in scenarios[self.current_scenario]['Answer possibilities']:
             allowed = True
             # kijk of er een specifiek item in je pockets moet zitten om verder te kunnen
-            # print(ans)
             if 'needed' in scenarios[self.current_scenario].keys():
                 if type(scenarios[self.current_scenario]['needed']) != NoneType and ans in \
                         scenarios[self.current_scenario]['needed']:

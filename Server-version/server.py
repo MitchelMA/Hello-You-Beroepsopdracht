@@ -61,7 +61,6 @@ class Server:
     def Game(self, conn, addr):
         print(f'[NEW CONNECTION] {addr} connected.')
         print(f'[ACTIVE] {threading.active_count() - 1}')
-        # print(self.voortgang)
         connected = True
         conn.send(f'Je bent verbonden met: [{self.ADDR[0]}:{self.ADDR[1]}]'.encode(self.FORMAT))
 
