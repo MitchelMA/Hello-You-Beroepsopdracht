@@ -145,6 +145,5 @@ dan Afghanistan en dit bleek ook zo te zijn. In Pakistan probeer je een toekomst
 te bouwen, je krijgt er werk én het lukt je zelfs om weer een familie op te bouwen.  
   
 ## Stuk-21_(einde-8)
-Je besloot om in de regio te blijven en naar Pakistan te gaan. Het leek jou veiliger  
-dan Afghanistan en dit bleek ook zo te zijn. In Pakistan probeer je een toekomst op  
-te bouwen, je krijgt er werk én het lukt je zelfs om weer een familie op te bouwen.  
+Je besloot om door Pakistan naar India te gaan en daar een nieuw leven op te  
+bouwen. Het lukte je om er werk te vinden en vrienden te maken.  
