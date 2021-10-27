@@ -62,7 +62,6 @@ class Server:
         print(f'[NEW CONNECTION] {addr} connected.')
         print(f'[ACTIVE] {threading.active_count() - 1}')
         connected = True
-        # conn.send(f'Je bent verbonden met: [{self.ADDR[0]}:{self.ADDR[1]}]'.encode(self.FORMAT))
 
         request = conn.recv(1024).decode(self.FORMAT)
         string_list = request.split(' ')
